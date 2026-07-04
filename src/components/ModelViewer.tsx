@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState, Suspense } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, Center } from '@react-three/drei';
-import { STLLoader } from 'three/examples/jsm/loaders/STLLoader';
 import * as THREE from 'three';
 
 function Model({ url }: { url: string }) {
@@ -11,13 +10,22 @@ function Model({ url }: { url: string }) {
   const [geometry, setGeometry] = useState<THREE.BufferGeometry | null>(null);
 
   useEffect(() => {
-    const loader = new STLLoader();
-    loader.load(url, (geo) => {
-      geo.computeVertexNormals();
-      geo.center();
-      setGeometry(geo);
-    });
+    let disposed = false;
+
+    const load = async () => {
+      const { STLLoader } = await import('three/examples/jsm/loaders/STLLoader');
+      const loader = new STLLoader();
+      loader.load(url, (geo) => {
+        if (disposed) return;
+        geo.computeVertexNormals();
+        geo.center();
+        setGeometry(geo);
+      });
+    };
+
+    load();
     return () => {
+      disposed = true;
       if (geometry) geometry.dispose();
     };
   }, [url]);
