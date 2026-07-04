@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState, Suspense } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { OrbitControls, Center, Environment } from '@react-three/drei';
+import { OrbitControls, Center } from '@react-three/drei';
 import { STLLoader } from 'three/examples/jsm/loaders/STLLoader';
 import * as THREE from 'three';
 
@@ -79,6 +79,8 @@ export default function ModelViewer({ url, onClose }: { url: string; onClose: ()
             fontSize: 13,
             textTransform: 'uppercase',
             letterSpacing: '0.05em',
+            color: '#F5F5F0',
+            textDecoration: 'none',
           }}
         >
           Download STL
