@@ -8,7 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "next": "15.1.0",
+    "next": "^15.3.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "next-auth": "5.0.0-beta.25",
@@ -24,5 +24,8 @@
     "@types/react": "^19.0.0",
     "@types/pg": "^8.11.0",
     "typescript": "^5.7.0"
+  },
+  "overrides": {
+    "three-mesh-bvh": "^0.8.0"
   }
 }
