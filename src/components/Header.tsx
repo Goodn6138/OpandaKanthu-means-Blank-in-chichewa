@@ -24,6 +24,7 @@ export default async function Header() {
       </Link>
 
       <nav style={{ display: 'flex', alignItems: 'center', gap: 32, fontSize: 14 }}>
+        <Link href="/about">About</Link>
         <Link href="/follow-us">Follow Us</Link>
         {session?.user ? (
           <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
