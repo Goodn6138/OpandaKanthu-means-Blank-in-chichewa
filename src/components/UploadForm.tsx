@@ -27,11 +27,10 @@ export default function UploadForm() {
     form.append(mode === 'sketch' ? 'image' : 'image_upload', file);
     if (mode === 'sketch') form.append('description', description);
 
-    const endpoint = mode === 'sketch' ? '/upload' : '/image_upload';
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+    const endpoint = mode === 'sketch' ? '/api/upload' : '/api/image_upload';
 
     try {
-      const res = await fetch(`${apiUrl}${endpoint}`, {
+      const res = await fetch(endpoint, {
         method: 'POST',
         body: form,
       });
