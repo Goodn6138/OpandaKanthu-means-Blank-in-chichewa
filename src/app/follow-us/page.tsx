@@ -21,9 +21,8 @@ export default function FollowUs() {
         Stay updated with what we are building. Opanda Kanthu means &ldquo;blank&rdquo; in Malawi, because every creation starts from nothing.
       </p>
 
-      {/* TODO: Replace with your actual social/profile link */}
       <a
-        href="https://twitter.com/yourhandle"
+        href="https://www.linkedin.com/company/that-blank-engineering-research-company/"
         target="_blank"
         rel="noopener noreferrer"
         style={{
@@ -36,12 +35,8 @@ export default function FollowUs() {
           opacity: 1,
         }}
       >
-        Follow on X
+        Follow on LinkedIn
       </a>
-
-      <p style={{ marginTop: 24, fontSize: 13, opacity: 0.3 }}>
-        Replace the link above with your page URL.
-      </p>
     </div>
   );
 }
