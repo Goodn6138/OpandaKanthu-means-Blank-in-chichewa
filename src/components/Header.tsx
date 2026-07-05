@@ -1,9 +1,6 @@
-import { auth, signIn, signOut } from '@/lib/auth';
 import Link from 'next/link';
 
-export default async function Header() {
-  const session = await auth();
-
+export default function Header() {
   return (
     <header style={{
       position: 'fixed',
@@ -26,18 +23,6 @@ export default async function Header() {
       <nav style={{ display: 'flex', alignItems: 'center', gap: 32, fontSize: 14 }}>
         <Link href="/about">About</Link>
         <Link href="/follow-us">Follow Us</Link>
-        {session?.user ? (
-          <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-            <span style={{ opacity: 0.6 }}>{session.user.name}</span>
-            <form action={async () => { 'use server'; await signOut(); }}>
-              <button type="submit" style={{ padding: '8px 20px', fontSize: 12 }}>Sign Out</button>
-            </form>
-          </div>
-        ) : (
-          <form action={async () => { 'use server'; await signIn('google'); }}>
-            <button type="submit" style={{ padding: '8px 20px', fontSize: 12 }}>Sign In with Google</button>
-          </form>
-        )}
       </nav>
     </header>
   );
