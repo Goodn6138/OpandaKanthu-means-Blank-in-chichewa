@@ -4,9 +4,7 @@ import { useState, useCallback } from 'react';
 import ModelViewer from './ModelViewer';
 
 export default function UploadForm() {
-  const [mode, setMode] = useState<'sketch' | 'image'>('sketch');
   const [file, setFile] = useState<File | null>(null);
-  const [description, setDescription] = useState('');
   const [loading, setLoading] = useState(false);
   const [modelUrl, setModelUrl] = useState<string | null>(null);
   const [error, setError] = useState('');
@@ -24,13 +22,10 @@ export default function UploadForm() {
     setModelUrl(null);
 
     const form = new FormData();
-    form.append(mode === 'sketch' ? 'image' : 'image_upload', file);
-    if (mode === 'sketch') form.append('description', description);
-
-    const endpoint = mode === 'sketch' ? '/api/upload' : '/api/image_upload';
+    form.append('image_upload', file);
 
     try {
-      const res = await fetch(endpoint, {
+      const res = await fetch('/api/image_upload', {
         method: 'POST',
         body: form,
       });
@@ -49,41 +44,6 @@ export default function UploadForm() {
 
   return (
     <div style={{ maxWidth: 560, width: '100%', margin: '0 auto' }}>
-      <div style={{
-        display: 'flex',
-        gap: 0,
-        marginBottom: 40,
-        border: '1px solid #2A2A2A',
-      }}>
-        {(['sketch', 'image'] as const).map((m) => (
-          <button
-            key={m}
-            onClick={() => setMode(m)}
-            style={{
-              flex: 1,
-              border: 'none',
-              borderBottom: mode === m ? '1px solid #F5F5F0' : '1px solid transparent',
-              background: mode === m ? 'rgba(245,245,240,0.03)' : 'transparent',
-              padding: '16px',
-              fontSize: 13,
-              textTransform: 'uppercase',
-            }}
-          >
-            {m === 'sketch' ? 'From Sketch' : 'From Image'}
-          </button>
-        ))}
-      </div>
-
-      {mode === 'sketch' && (
-        <textarea
-          rows={3}
-          placeholder="Describe what you want to build..."
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          style={{ marginBottom: 24, resize: 'none' }}
-        />
-      )}
-
       <div
         onDrop={onDrop}
         onDragOver={(e) => e.preventDefault()}
@@ -124,7 +84,7 @@ export default function UploadForm() {
 
       <button
         onClick={handleSubmit}
-        disabled={!file || loading || (mode === 'sketch' && !description)}
+        disabled={!file || loading}
         style={{ width: '100%', padding: '16px' }}
       >
         {loading ? 'Generating...' : 'Generate Model'}
