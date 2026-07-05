@@ -70,7 +70,7 @@ export default function UploadForm() {
           <p style={{ fontSize: 15 }}>{file.name}</p>
         ) : (
           <>
-            <p style={{ fontSize: 15, marginBottom: 8, opacity: 0.8 }}>Drop an image here</p>
+            <p style={{ fontSize: 15, marginBottom: 8, opacity: 0.8 }}>Drop a sketch or photo here</p>
             <p style={{ fontSize: 13, opacity: 0.4 }}>or click to browse</p>
           </>
         )}
@@ -87,7 +87,7 @@ export default function UploadForm() {
         disabled={!file || loading}
         style={{ width: '100%', padding: '16px' }}
       >
-        {loading ? 'Generating...' : 'Generate Model'}
+        {loading ? 'Generating...' : 'Get STL'}
       </button>
 
       {modelUrl && <ModelViewer url={modelUrl} onClose={() => setModelUrl(null)} />}
