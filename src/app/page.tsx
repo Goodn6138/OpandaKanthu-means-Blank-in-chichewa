@@ -28,7 +28,7 @@ export default function Home() {
           margin: '0 auto',
           lineHeight: 1.6,
         }}>
-          Blank slate. Describe an idea, upload a sketch or a photo, and get an stl.
+          Upload a sketch or photo. Get your STL.
         </p>
       </div>
 
