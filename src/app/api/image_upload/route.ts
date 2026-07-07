@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-const GPU_BACKEND = "https://piusongaro18--triptsg-modal-2-entrypoint.modal.run";
+const GPU_BACKEND = "https://piusongaro18--triptsg-modal-entrypoint.modal.run";
 
 export async function POST(req: NextRequest) {
   const form = await req.formData();
